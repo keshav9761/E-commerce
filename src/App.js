@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Components/Header";
+import { useRoutes } from 'react-router-dom'
+import Cart from "./Pages/Cart";
+import NotFound from "./Pages/NotFound";
+import Product from "./Pages/Product";
+import Login from "./Pages/Login";
+import Layout from "./Components/Element/Layout";
+import SinUp from "./Pages/SinUp";
 
 function App() {
+  const routes = useRoutes([
+    { path: '*', element: <NotFound /> },
+    { path: '/', element: <Login /> },
+    { path: '/productlist', element: <Product /> },
+    { path: '/cartlist', element: <Cart /> },
+    { path: '/sinup', element: <SinUp /> },
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Layout>
+        {routes}
+      </Layout>
+    </>
   );
 }
 
