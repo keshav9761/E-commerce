@@ -7,7 +7,6 @@ const navigation = [
     { name: 'Dashboard', href: '#', current: true },
     { name: 'Team', href: '#', current: false },
     { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -34,16 +33,18 @@ export default function Header() {
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <img
-                                        className="block h-8 w-auto lg:hidden"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
-                                    />
-                                    <img
-                                        className="hidden h-8 w-auto lg:block"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
-                                    />
+                                    <Link to='/productlist'>
+                                        <img
+                                            className="block h-8 w-auto lg:hidden"
+                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                            alt="Your Company"
+                                        />
+                                        <img
+                                            className="hidden h-8 w-auto lg:block"
+                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                            alt="Your Company"
+                                        />
+                                    </Link>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
@@ -121,7 +122,7 @@ export default function Header() {
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <Link 
+                                                    <Link
                                                         to="/"
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >

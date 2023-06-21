@@ -1,13 +1,12 @@
-import Header from "./Components/Header";
 import { useRoutes } from 'react-router-dom'
-import Cart from "./Pages/Cart";
 import NotFound from "./Pages/NotFound";
 import ProductList from "./Pages/ProductList";
-import Login from "./Pages/Login";
-import Layout from "./Components/Element/Layout";
-import SinUp from "./Pages/SinUp";
-import CheckOut from "./Pages/CheckOut";
 import ProductDetails from "./Pages/ProductDetail";
+import Login from "./Pages/Login";
+import SinUp from "./Pages/SinUp";
+import Layout from "./Components/Element/Layout";
+import CheckOut from "./Pages/CheckOut";
+import Cart from "./Pages/Cart";
 
 function App() {
   const routes = useRoutes([
@@ -16,8 +15,8 @@ function App() {
     { path: '/productlist', element: <ProductList /> },
     { path: '/cartlist', element: <Cart /> },
     { path: '/sinup', element: <SinUp /> },
-    { path: '/checkout', element: <CheckOut/> },
-    { path: '/productdetail', element: <ProductDetails/> },
+    { path: '/checkout', element: <CheckOut /> },
+    { path: '/productdetail', element: <ProductDetails /> },
   ])
   return (
     <>
