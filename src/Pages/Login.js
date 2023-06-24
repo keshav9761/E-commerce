@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from 'yup'
 import { Link } from "react-router-dom";
-import { login } from "../Redux/counterSlice";
+import { counterActions } from "../Redux/counterSlice";
 import { useDispatch } from "react-redux";
 
 const validationLogin = yup.object({
@@ -23,7 +23,7 @@ export default function Login() {
         validationSchema: validationLogin,
         onSubmit: (value, action) => {
             console.log("form", value)
-            dispatch(login(value))
+            dispatch(counterActions.login(value))
             action.resetForm();
         }
     })

@@ -1,55 +1,21 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import services from "./Services/servies"
 
 export default function ProductList() {
     const [productList, setProductList] = useState([])
-    // const products = [
-    //     {
-    //         id: 1,
-    //         name: 'Basic Tee',
-    //         href: '#',
-    //         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    //         imageAlt: "Front of men's Basic Tee in black.",
-    //         price: '$35',
-    //         color: 'Black',
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Basic Tee',
-    //         href: '#',
-    //         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    //         imageAlt: "Front of men's Basic Tee in black.",
-    //         price: '$35',
-    //         color: 'Black',
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Basic Tee',
-    //         href: '#',
-    //         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    //         imageAlt: "Front of men's Basic Tee in black.",
-    //         price: '$35',
-    //         color: 'Black',
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Basic Tee',
-    //         href: '#',
-    //         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    //         imageAlt: "Front of men's Basic Tee in black.",
-    //         price: '$35',
-    //         color: 'Black',
-    //     },
-    // ]
+   
+const fetchProductList = useCallback(async () => {
+     const data = await services?.productData();;
+    setProductList(data);
+    return null
+  },[])
 
-    const productData = async () => {
-        const productItem = await axios.get("https://dummyjson.com/products?limit=100")
-        setProductList(productItem?.data.products)
-    }
+    
     useEffect(() => {
-        productData();
+        fetchProductList()
     }, [])
+
     return (
         <>
             <div className="bg-white">

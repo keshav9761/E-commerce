@@ -4,7 +4,7 @@ const initialState = {
   loginData: {},
 }
 
-export const counterSlice = createSlice({
+const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
@@ -16,6 +16,7 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { login } = counterSlice.actions
+const counterActions = counterSlice.actions
+const counterReducer = counterSlice.reducer
 
-export default counterSlice.reducer
+export { counterActions, counterReducer}
