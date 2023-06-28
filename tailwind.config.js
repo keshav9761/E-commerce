@@ -8,6 +8,9 @@ module.exports = {
       gridTemplateRows: {
         '[auto,auto,1fr]': 'auto auto 1fr',
       },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      }
     },
   },
   plugins: [],
