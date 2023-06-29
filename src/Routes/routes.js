@@ -6,7 +6,7 @@
 // import CheckOut from "../Pages/CheckOut";
 // import Cart from "../Pages/Cart";
 // import { lazy } from "react";
-
+import Spinner from '../Pages/Spinner'
 import { lazy } from 'react'
 
 const ProductList=lazy(()=>import('../Pages/Products/ProductList'));
@@ -24,5 +24,6 @@ export default [
     { path: '/cartlist', element: <Cart /> },
     { path: '/sinup', element: <SinUp /> },
     { path: '/checkout', element: <CheckOut /> },
-    { path: '/productdetail', element: <ProductDetails /> }
+    { path: '/productdetail', element: <ProductDetails /> },
+    { path: '/spinner', element: <Spinner /> }
 ]
