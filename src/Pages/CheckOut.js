@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import Cart from './Cart'
+import Cart from './Cart/Cart'
 export default function CheckOut() {
     const addresses = [
         {

@@ -11,7 +11,7 @@ import { lazy } from 'react'
 
 const ProductList=lazy(()=>import('../Pages/Products/ProductList'));
 const Login=lazy(()=>import('../Pages/Login'));
-const Cart=lazy(()=>import('../Pages/Cart'));
+const Cart=lazy(()=>import('../Pages/Cart/Cart'));
 const SinUp=lazy(()=>import('../Pages/SinUp'));
 const CheckOut=lazy(()=>import('../Pages/CheckOut'))
 const ProductDetails=lazy(()=>import('../Pages/Products/ProductDetail'));
@@ -24,6 +24,6 @@ export default [
     { path: '/cartlist', element: <Cart /> },
     { path: '/sinup', element: <SinUp /> },
     { path: '/checkout', element: <CheckOut /> },
-    { path: '/productdetail', element: <ProductDetails /> },
+    { path: '/productdetail/:productid', element: <ProductDetails  /> },
     { path: '/spinner', element: <Spinner /> }
 ]

@@ -1,29 +1,30 @@
 import { useCallback, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import services from "./Services/servies"
-import { productAction } from "../../Redux/productSlice"
 import { useDispatch, useSelector } from "react-redux"
+import { addToCart } from "../Cart/Redux/cartSlice"
 
 export default function ProductList() {
-    const [searchQuery, setSearchQuery] = useState('')
 
-    const product = useSelector((state) => state?.product?.products)
+    const [searchQuery, setSearchQuery] = useState('')
+    const { products = [] } = useSelector((state) => state?.product.data) || {}
+    // console.log("777", products)
     const dispatch = useDispatch()
 
-    const fetchProductList = useCallback(async () => {
-        const data = await services?.productData();;
-        dispatch(productAction?.addProductList(data))
-        return null
-    }, [])
 
-
-    useEffect(() => {
-        fetchProductList()
-    }, [])
 
     const handleSearch = (event) => {
         setSearchQuery(event.target.value);
     };
+    const handleCart = (product) => {
+        // console.log("first@@", product)
+        dispatch(addToCart(product))
+
+    }
+    useEffect(() => {
+        dispatch(services?.productsFetch())
+    }, [])
+
     return (
         <>
             <div className="bg-white">
@@ -39,38 +40,49 @@ export default function ProductList() {
                     </div>
 
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {product?.filter((item) => {
-                            if (searchQuery == '') {
-                                return item;
-                            }
-                            else if (item.brand.toLowerCase().includes(searchQuery.toLowerCase())) {
-                                return item;
-                            }
-                        })?.map((product, i) => (
-                            <Link key={`prodict-${i}`} to="/productdetail">
-                                <div key={product.id} className="group relative">
-                                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                        <img
-                                            src={product.thumbnail}
-                                            // alt={product.thumbnail}
-                                            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                                        />
-                                    </div>
-                                    <div className="mt-4 flex justify-between">
-                                        <div>
-                                            <h3 className="text-sm text-gray-700">
-                                                <div>
-                                                    <span aria-hidden="true" className="absolute inset-0" />
-                                                    {product.title}
-                                                </div>
-                                            </h3>
-                                            <p className="mt-1 text-sm text-gray-500">{product.brand}</p>
+                        {
+                            products?.filter((item) => {
+                                if (searchQuery == '') {
+                                    return item;
+                                }
+                                else if (item.brand.toLowerCase().includes(searchQuery.toLowerCase())) {
+                                    return item;
+                                }
+                            })?.map((product, i) => (
+                                <Link to={`/productdetail/${product.id}`}>
+                                    <div key={product.id} className="group relative">
+                                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                            <img
+                                                src={product.thumbnail}
+                                                // alt={product.thumbnail}
+                                                className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                            />
                                         </div>
-                                        <p className="text-sm font-medium text-gray-900">Rs.{product.price}</p>
+                                        <div className="mt-4 flex justify-between">
+                                            <div>
+                                                <h3 className="text-sm text-gray-700">
+                                                    <div>
+                                                        <span aria-hidden="true" className="" />
+                                                        {product.title}
+                                                    </div>
+                                                </h3>
+                                                <p className="mt-1 text-sm text-gray-500">{product.brand}</p>
+                                            </div>
+                                            <p className="text-sm font-medium text-gray-900">Rs.{product.price}</p>
+                                        </div>
+                                        <div className="flex flex-col items-center justify-center">
+                                            <button
+                                                onClick={() => handleCart(product)}
+                                                className="rounded-md bg-indigo-600 px-3.5 py-2.5 my-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            >
+                                                Add To Cart
+                                            </button>
+                                        </div>
+
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            ))}
+
                     </div>
                 </div>
             </div>

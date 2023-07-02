@@ -104,6 +104,10 @@ export default function Cart() {
             </div>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5">
                 <div className="flex justify-between text-base font-medium text-gray-900 ">
+                    <p>items</p>
+                    <p>3</p>
+                </div>
+                <div className="flex justify-between text-base font-medium text-gray-900 ">
                     <p>Subtotal</p>
                     <p>$262.00</p>
                 </div>
@@ -122,7 +126,7 @@ export default function Cart() {
                             <button
                                 type="button"
                                 className="font-medium text-indigo-600 hover:text-indigo-500"
-                                
+
                             >
                                 Continue Shopping
                                 <span aria-hidden="true"> &rarr;</span>
