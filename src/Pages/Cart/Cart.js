@@ -49,7 +49,7 @@ const products = [
 
 export default function Cart() {
     return (
-        <>
+        <> 
             <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className="text-3xl my-3 font-medium text-gray-700">Shopping cart</div>
                 <div className="mt-8">

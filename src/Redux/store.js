@@ -4,7 +4,7 @@ import logger from 'redux-logger'
 
 export const store = configureStore({
   reducer: reducers,
-  middleware: (getDefaultMiddleware) =>
+    middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(logger)
 
 })

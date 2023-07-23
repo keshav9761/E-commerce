@@ -20,7 +20,7 @@ const productSlice = createSlice({
             state.status = "pending";
         },
         [productsFetch.fulfilled]: (state, action) => {
-            // console.log("Action", action)
+            console.log("Actionaaa", action)
             state.data = action.payload;
             state.status = "success";
 
