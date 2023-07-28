@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Cart/Redux/cartSlice";
 
 export default function ProductList() {
+
   const [searchQuery, setSearchQuery] = useState("");
   const { products = [] } = useSelector((state) => state?.product.data) || {};
   // console.log("777", products)
@@ -17,6 +18,7 @@ export default function ProductList() {
     // console.log("first@@", product)
     dispatch(addToCart(product));
   };
+  
   useEffect(() => {
     dispatch(services?.productsFetch());
   }, []);

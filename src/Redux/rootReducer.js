@@ -7,6 +7,6 @@ import loginReducer from "./loginSlice";
 export const reducers = combineReducers({
     product: productReducer,
     cart: cartReducer,
-    auth: loginReducer
+    auth: loginReducer 
 })
 

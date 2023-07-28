@@ -9,6 +9,6 @@ const Base = 'https://dummyjson.com'
 
 const productsFetch = createAsyncThunk('product/productFetch', async () => {
     const response = await axios.get('https://dummyjson.com/products?limit=100')
-    return response?.data
+    return response?.data 
 })
 export default { productsFetch }
