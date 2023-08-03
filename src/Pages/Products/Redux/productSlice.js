@@ -15,12 +15,13 @@ const productSlice = createSlice({
         //     state.products = action?.payload
         // }
     },
+    
     extraReducers: {
         [productsFetch.pending]: (state, action) => {
             state.status = "pending";
         },
         [productsFetch.fulfilled]: (state, action) => {
-            console.log("Actionaaa", action)
+            console.log("Action>>>", action)
             state.data = action.payload;
             state.status = "success";
 
