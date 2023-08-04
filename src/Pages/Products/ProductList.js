@@ -2,26 +2,22 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import services from "./Services/servies";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../Cart/Redux/cartSlice";
 
 export default function ProductList() {
 
   const [searchQuery, setSearchQuery] = useState("");
-  const { products = [] } = useSelector((state) => state?.product.data) || {};
-  // const products = useSelector((state) =>state?.product?.data)
+  // const { products = [] } = useSelector((state) => state?.product.data) || {};
+  const products = useSelector((state) => state?.product?.data || [])
 
-  console.log("777##", products)
+  // console.log("777##", products)
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
-  const handleCart = (product) => {
-    // console.log("first@@", product)
-    dispatch(addToCart(product));
-  };
 
   useEffect(() => {
+    console.log("first",)
     dispatch(services?.productsFetch());
   }, []);
 
@@ -77,12 +73,6 @@ export default function ProductList() {
                     </p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <button
-                      onClick={() => handleCart(product)}
-                      className="rounded-md bg-indigo-600 px-3.5 py-2.5 my-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      Add To Cart
-                    </button>
                   </div>
                 </div>
               </Link>

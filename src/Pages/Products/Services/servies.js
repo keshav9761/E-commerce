@@ -11,4 +11,5 @@ const productsFetch = createAsyncThunk('product/productFetch', async () => {
     const response = await axios.get('http://localhost:8000/products')
     return response?.data 
 })
+
 export default { productsFetch }

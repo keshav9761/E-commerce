@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const products = [
     {
@@ -48,6 +49,8 @@ const products = [
 ]
 
 export default function Cart() {
+    const items=useSelector((state)=>state?.cart?.cartItems)
+    console.log("cartlist",items)
     return (
         <> 
             <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
