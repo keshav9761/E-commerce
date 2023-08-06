@@ -1,8 +1,10 @@
+import '../../App.css'
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import services from "./Services/servies";
 import { useDispatch, useSelector } from "react-redux";
-
+import { StarIcon } from '@heroicons/react/24/outline'
+import Pagination from '../Pagination'
 export default function ProductList() {
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -48,8 +50,8 @@ export default function ProductList() {
               }
             })?.map((product, i) => (
               <Link to={`/productdetail/${product.id}`}>
-                <div key={product.id} className="group relative">
-                  <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                <div key={product.id} className="group relative border-solid border-2 p-2 border-gray-200">
+                  <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80" id='box'>
                     <img
                       src={product?.thumbnail}
                       // alt={product.thumbnail}
@@ -64,13 +66,22 @@ export default function ProductList() {
                           {product?.title}
                         </div>
                       </h3>
+                      {/* <p className="mt-1 text-sm text-gray-500">
+                      <StarIcon className='w-6 h-6 inline'></StarIcon>
+                      <span className='mt-11'></span>{product.rating}
+                      </p> */}
                       <p className="mt-1 text-sm text-gray-500">
                         {product.brand}
                       </p>
                     </div>
-                    <p className="text-sm font-medium text-gray-900">
-                      Rs.{product.price}
-                    </p>
+                    <div>
+                      <p className="text-sm font-medium text-gray-400 line-through decoration-red-700">
+                        Rs.{product.price}
+                      </p>
+                      <p className="text-sm font-medium text-gray-900">
+                        Dis.{Math.round(product?.price * (1 - product?.discountPercentage / 100))}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                   </div>
@@ -79,7 +90,10 @@ export default function ProductList() {
             ))}
           </div>
         </div>
+      {/*--------------------- pagination--------------------------- */}
+        <Pagination />
       </div>
+
     </>
   );
 }

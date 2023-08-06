@@ -45,13 +45,17 @@ const cartSlice = createSlice({
       .addCase(cartsFetch.fulfilled, (state, action) => {
         const product = action.payload;
         const existingItem = state.cartItems.find(item => item.id === product.id);
+
         if (existingItem) {
           existingItem.quantity++;
-        } else {
+          toast.warning(`increase quntity ${state.cartItems[existingItem]}`, { position: "buttom-right" })
+        }
+        else {
           state.cartItems.push({ ...product, quantity: 1 });
+          toast.success(`added ${product?.title}`, { position: "top-right" })
         }
         state.status = 'succeeded'
-        console.log("cart",action)
+        console.log("cart", action)
       })
       .addCase(cartsFetch.rejected, (state, action) => {
         state.loading = false;
